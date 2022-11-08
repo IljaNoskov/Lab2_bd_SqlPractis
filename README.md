@@ -146,6 +146,7 @@ select * from work_rez
 <img width="758" alt="image" src="https://user-images.githubusercontent.com/99073996/200358244-de8bc406-5994-4038-82c9-e9bd2d484b08.png">
 <img width="763" alt="image" src="https://user-images.githubusercontent.com/99073996/200358338-0d8ed49e-1405-40ac-953a-9cc307d94202.png">
 
+
 #### Задание 4. Уникальные выборки.
 4.c)
 Запрос.
@@ -212,3 +213,27 @@ ORDER BY plase,price
 
 <img width="560" alt="image" src="https://user-images.githubusercontent.com/99073996/200609987-c53081b1-400a-42ec-abdd-810e978b771d.png">
 
+
+#### Задание 6. Вывод записей.
+6.c)
+Запрос.
+```sql
+select work_rez.date, medical_staff.surname, work_plase.plase, operation_type.operation_name from work_rez,medical_staff,work_plase,operation_type
+where work_rez.worker_id=medical_staff.id and work_rez.plase_id=work_plase.id and work_rez.operation_id=operation_type.id
+```
+Результат.
+
+<img width="755" alt="image" src="https://user-images.githubusercontent.com/99073996/200612426-98c974fa-1e36-4b91-93da-2d2fb21dfdca.png">
+<img width="706" alt="image" src="https://user-images.githubusercontent.com/99073996/200612648-fe9e4d99-6fdc-4506-a302-ce8b5b0c43a7.png">
+
+6.d)
+Запрос.
+```sql
+select work_rez.contract_id, work_plase.plase, work_rez.operation_num,work_rez.payment from work_rez,work_plase
+where work_rez.plase_id=work_plase.id
+ORDER BY work_rez.payment
+```
+Результат.
+
+<img width="625" alt="image" src="https://user-images.githubusercontent.com/99073996/200614195-94686f19-aa6f-43e8-bbd8-d59d92a1b97f.png">
+<img width="617" alt="image" src="https://user-images.githubusercontent.com/99073996/200614349-b5759d06-d617-42a5-9278-80323ca2a210.png">
