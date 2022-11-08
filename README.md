@@ -1,4 +1,4 @@
-# Lab2_bd_SqlPractis. Выполнил Носков Илья 21ПИ1.
+# Лабораторная работа №2. Вариант 4. Выполнил Носков Илья 21ПИ1.
 
 #### Задание 1. Создаём таблицы.
 ```sql
@@ -39,6 +39,8 @@ CREATE TABLE work_rez
 );
 
 ```
+Я использовал PRIMARY KEY для всех id, которые у меня были, кроме id, которые указывают на больницы или же персонал из других таблиц (как в work_rez). Для всех остальных значений я просто написал "NOT NULL", так как какие либо ограничения более были бы избыточными. Ни уникальность, ни что либо ещё нам не нужно.
+Также я пытался добавить к id ещё один параметр - AUTO_INCREMENT, но увы, у меня не получилось. Выдавало не понятную мне ошибку и попытка загуглить её решение не увенчалась успехом.
 
 #### Задание 2. Заполняем таблицы
 ``` sql
@@ -144,3 +146,32 @@ select * from work_rez
 <img width="758" alt="image" src="https://user-images.githubusercontent.com/99073996/200358244-de8bc406-5994-4038-82c9-e9bd2d484b08.png">
 <img width="763" alt="image" src="https://user-images.githubusercontent.com/99073996/200358338-0d8ed49e-1405-40ac-953a-9cc307d94202.png">
 
+#### Задание 4. Уникальные выборки.
+4.c)
+Запрос.
+```sql
+select DISTINCT address From medical_staff
+```
+Результат.
+
+<img width="102" alt="image" src="https://user-images.githubusercontent.com/99073996/200605483-b2d8c066-265f-4ed8-8567-e334e3c8281c.png">
+
+4.d)
+Запрос.
+```sql
+select DISTINCT plase From work_plase
+```
+
+Результат.
+
+<img width="108" alt="image" src="https://user-images.githubusercontent.com/99073996/200606249-e3059e3a-f11e-4422-b9be-beedbfdf831d.png">
+
+4.e)
+Запрос.
+```sql
+select DISTINCT date From work_rez
+```
+
+Результат.
+
+<img width="68" alt="image" src="https://user-images.githubusercontent.com/99073996/200606622-152818dd-ff2c-4ab0-9196-5f96d21ca27a.png">
