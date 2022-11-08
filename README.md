@@ -175,3 +175,40 @@ select DISTINCT date From work_rez
 Результат.
 
 <img width="68" alt="image" src="https://user-images.githubusercontent.com/99073996/200606622-152818dd-ff2c-4ab0-9196-5f96d21ca27a.png">
+
+
+#### Задание 5. Поиск
+5.c)
+Запрос.
+```sql
+select contract_id,date From work_rez
+where payment>=14000
+```
+Результат.
+
+<img width="468" alt="image" src="https://user-images.githubusercontent.com/99073996/200607671-a3b789b1-6d5c-46df-af4d-ac4c32b5c348.png">
+<img width="427" alt="image" src="https://user-images.githubusercontent.com/99073996/200607776-33ccd465-21c4-49de-b6dd-ac076ab783d5.png">
+
+5.d)
+Запрос.
+```sql
+select tax From medical_staff
+where address='Выкса' or address='Навашино'
+```
+
+Результат.
+
+<img width="50" alt="image" src="https://user-images.githubusercontent.com/99073996/200608416-3f3c8665-067c-434e-9d96-e27876cb543b.png">
+
+5.e)
+Запрос.
+```sql
+select operation_name,price,plase From operation_type
+where price>10000 and (operation_name like ('%Инъекция%'))
+ORDER BY plase,price
+```
+
+Результат.
+
+<img width="560" alt="image" src="https://user-images.githubusercontent.com/99073996/200609987-c53081b1-400a-42ec-abdd-810e978b771d.png">
+
