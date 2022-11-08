@@ -39,7 +39,7 @@ CREATE TABLE work_rez
 );
 
 ```
-Я использовал PRIMARY KEY для всех id, которые у меня были, кроме id, которые указывают на больницы или же персонал из других таблиц (как в work_rez). Для всех остальных значений я просто написал "NOT NULL", так как какие либо ограничения более были бы избыточными. Ни уникальность, ни что либо ещё нам не нужно.
+Я использовал PRIMARY KEY для всех id, которые у меня были, кроме id, которые указывают на больницы или же персонал из других таблиц (как в work_rez). Также я использовал проверку того, что цифра не больше 100 для налогов Для всех остальных значений я просто написал "NOT NULL", так как какие либо ограничения более были бы избыточными. Ни уникальность, ни что либо ещё нам не нужно.
 Также я пытался добавить к id ещё один параметр - AUTO_INCREMENT, но увы, у меня не получилось. Выдавало не понятную мне ошибку и попытка загуглить её решение не увенчалась успехом.
 
 #### Задание 2. Заполняем таблицы
@@ -237,3 +237,60 @@ ORDER BY work_rez.payment
 
 <img width="625" alt="image" src="https://user-images.githubusercontent.com/99073996/200614195-94686f19-aa6f-43e8-bbd8-d59d92a1b97f.png">
 <img width="617" alt="image" src="https://user-images.githubusercontent.com/99073996/200614349-b5759d06-d617-42a5-9278-80323ca2a210.png">
+
+
+
+#### Задание 7.
+7.с)
+Запрос.
+```sql
+select medical_staff.surname,medical_staff.address from medical_staff,work_rez,operation_type
+where medical_staff.id=work_rez.worker_id 
+and work_rez.operation_id= operation_type.id 
+and operation_type.operation_name='Наложение гипса'
+and work_rez.operation_num>1
+```
+Результат.
+
+<img width="423" alt="image" src="https://user-images.githubusercontent.com/99073996/200639081-72b6d00b-99f4-4ed8-a44a-267fcaf5fdae.png">
+
+7.d)
+Запрос.
+```sql
+select operation_type.operation_name from medical_staff,work_rez,work_plase,operation_type
+where medical_staff.address in ('Вознесенское','Выкса')
+and work_plase.plase='Больница'
+and medical_staff.id=work_rez.worker_id
+and work_rez.plase_id=work_plase.id
+AND operation_type.id=work_rez.operation_id
+```
+Результат.
+
+<img width="103" alt="image" src="https://user-images.githubusercontent.com/99073996/200640631-3ef29ade-32f7-4075-ae57-891941221aef.png">
+
+7.e)
+Запрос.
+```sql
+select work_plase.plase,work_plase.tax,medical_staff.surname from work_plase,medical_staff,work_rez
+where medical_staff.id =work_rez.worker_id
+and work_plase.id=work_rez.plase_id
+and medical_staff.tax BETWEEN 7 and 16
+Order BY work_plase.tax,medical_staff.tax
+```
+Результат.
+
+<img width="741" alt="image" src="https://user-images.githubusercontent.com/99073996/200643850-fa896136-d8b4-48d7-b059-2c0e77b73924.png">
+<img width="724" alt="image" src="https://user-images.githubusercontent.com/99073996/200643964-e19f44ac-963e-445f-85b5-068aafc3a19a.png">
+
+
+7.a)
+Запрос.
+```sql
+select work_rez.date,work_rez.operation_id,medical_staff.surname from work_rez,medical_staff
+where medical_staff.id=work_rez.worker_id
+and work_rez.payment>7000
+and work_rez.operation_num>1
+```
+Результат.
+
+<img width="565" alt="image" src="https://user-images.githubusercontent.com/99073996/200644851-3e4f81a0-4b91-4833-927f-47998a217b39.png">
