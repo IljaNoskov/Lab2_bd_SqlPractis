@@ -307,3 +307,51 @@ SET payment=payment*operation_num*(100-(SELECT medical_staff.tax from medical_st
 
 Результат.
 ![image](https://user-images.githubusercontent.com/99073996/201056944-21c794fc-41b0-47c7-9eed-6e6fa5f6e11c.png)
+
+
+#### Задаение 9.
+Тут я очень долго не мог понять, как добавить в таблицу об операциях (для меня это operation_type - таблица с индексом операции, местом проведения и т.д.) информацию об отчислении в бюджет. 
+
+```sql
+ALTER TABLE operation_type
+ADD tax INT;
+UPDATE operation_type
+set tax=price*(Select sum(work_rez.operation_num*work_plase.tax) from work_rez, work_plase
+               where work_rez.plase_id=work_plase.id
+               and work_rez.operation_id=1)/100
+WHERE operation_type.id=1;
+UPDATE operation_type
+set tax=price*(Select sum(work_rez.operation_num*work_plase.tax) from work_rez, work_plase
+               where work_rez.plase_id=work_plase.id
+               and work_rez.operation_id=2)/100
+WHERE operation_type.id=2;
+UPDATE operation_type
+set tax=price*(Select sum(work_rez.operation_num*work_plase.tax) from work_rez, work_plase
+               where work_rez.plase_id=work_plase.id
+               and work_rez.operation_id=3)/100
+WHERE operation_type.id=3;
+UPDATE operation_type
+set tax=price*(Select sum(work_rez.operation_num*work_plase.tax) from work_rez, work_plase
+               where work_rez.plase_id=work_plase.id
+               and work_rez.operation_id=4)/100
+WHERE operation_type.id=4;
+UPDATE operation_type
+set tax=price*(Select sum(work_rez.operation_num*work_plase.tax) from work_rez, work_plase
+               where work_rez.plase_id=work_plase.id
+               and work_rez.operation_id=5)/100
+WHERE operation_type.id=5;
+UPDATE operation_type
+set tax=price*(Select sum(work_rez.operation_num*work_plase.tax) from work_rez, work_plase
+               where work_rez.plase_id=work_plase.id
+               and work_rez.operation_id=6)/100
+WHERE operation_type.id=6;
+UPDATE operation_type
+set tax=price*(Select sum(work_rez.operation_num*work_plase.tax) from work_rez, work_plase
+               where work_rez.plase_id=work_plase.id
+               and work_rez.operation_id=7)/100
+WHERE operation_type.id=7;
+```
+
+Результат.
+
+![image](https://user-images.githubusercontent.com/99073996/201079232-cf8c8d35-5577-421c-bc69-2ef26c4fba69.png)
