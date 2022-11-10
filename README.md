@@ -462,3 +462,12 @@ AND medical_staff.id=work_rez.worker_id;
 Результат.
 ![image](https://user-images.githubusercontent.com/99073996/201095899-7a067194-f599-4246-83f7-71cf637b85cd.png)
 
+#### Запрос 12.
+```sql
+SELECT address FROM medical_staff
+	UNION SELECT address FROM work_plase;
+```
+
+Результат.
+
+![image](https://user-images.githubusercontent.com/99073996/201096682-a0c5578b-0c41-48d9-9445-ba10e0543663.png)
