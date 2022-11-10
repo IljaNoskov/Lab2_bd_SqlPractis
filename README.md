@@ -363,11 +363,16 @@ WHERE operation_type.id=7;
 10.с)
 Запрос.
 ```sql
-
+select medical_staff.surname from medical_staff, operation_type,work_rez
+where medical_staff.id=work_rez.worker_id
+AND operation_type.id=work_rez.operation_id
+AND medical_staff.address IN ('Навашино')
+AND operation_type.plase IN ('Выкса')
+AND operation_type.operation_name LIKE ('%Инъекция%')
 ```
 Результат.
 
-
+![image](https://user-images.githubusercontent.com/99073996/201084462-5b8690e0-3c0b-429d-afc9-cdec67a9688a.png)
 
 10.d)
 Запрос.
