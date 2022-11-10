@@ -538,3 +538,60 @@ and work_plase.address!=medical_staff.address
 ![image](https://user-images.githubusercontent.com/99073996/201223085-52d4bb50-ecca-44e0-b1f4-31287548b587.png)
 
 
+#### Задание 14.
+
+14.c)
+
+Задание.
+```sql
+select count(DISTINCT work_plase.id) from work_plase,work_rez,medical_staff
+where work_plase.id=work_rez.plase_id
+and work_rez.worker_id = medical_staff.id
+and work_rez.worker_id in (select work_rez.worker_id from work_rez,work_plase
+                           where work_plase.id=work_rez.plase_id
+						   and work_plase.address='Выкса')
+```
+Решение.
+
+![image](https://user-images.githubusercontent.com/99073996/201224944-2515ef7e-7969-43f6-ba17-1d3e450264b8.png)
+
+14.d)
+
+Задание.
+```sql
+select avg(tax) from medical_staff
+where id in(SELECT Distinct medical_staff.id from medical_staff,work_rez,operation_type
+where medical_staff.id=work_rez.worker_id
+and operation_type.id=work_rez.operation_id
+and operation_type.operation_name LIKE ('Инъекция%'));
+```
+Решение.
+
+![image](https://user-images.githubusercontent.com/99073996/201225658-94838b72-9f6e-4a9a-bb5e-188d6490d9f2.png)
+P.S. Проверка. (10+10+5)/3=25/3+-=8
+
+14.e)
+
+Задание.
+```sql
+select * from medical_staff
+where id in (select DISTINCT worker_id from work_rez
+where operation_id in(select id from operation_type
+where price in(select min(price) from operation_type)));
+```
+Решение.
+![image](https://user-images.githubusercontent.com/99073996/201226548-b27b1442-8ab4-43ca-9b17-037433a28e73.png)
+
+14.f)
+
+Задание.
+```sql
+select sum(work_rez.operation_num) from medical_staff,operation_type,work_rez
+where medical_staff.id=work_rez.worker_id
+and operation_type.id=work_rez.operation_id
+and medical_staff.surname='Губанов'
+and operation_type.price<=15000;
+```
+Решение.
+
+![image](https://user-images.githubusercontent.com/99073996/201226992-65eede49-390f-494e-85cc-737b8034c180.png)
