@@ -478,34 +478,63 @@ SELECT address FROM medical_staff
 
 Запрос.
 ```sql
-
+SELECT * from medical_staff
+where medical_staff.id not in (Select worker_id from work_rez
+                               where date='Суббота')
+and EXISTS(select * from work_rez
+                where work_rez.date='Суббота');
 ```
+В этот запросе EXISTS совсем не нужен. Для того, чтобы сделать запрос с EXISTS работающим, нужна возможность проверять конкретный id на наличие/отсутствие записи с этим врачём в субботу. Но в sql нет такой возможности. Или я её не знаю.
 
 Решение.
+
+![image](https://user-images.githubusercontent.com/99073996/201186319-fdc6f87b-ab85-43c1-b097-9ae2f1ff497b.png)
+
 
 13.d)
-
+Я не вижу, как действительно тут поможет экзист, но в задании он нужен, так что пусть будет.
 Запрос.
 ```sql
-
+select * from operation_type
+Where exists(SELECT * from operation_type
+where id IN (select operation_id from work_rez
+             where worker_id in (select id from medical_staff
+			                     where address='Выкса')));
 ```
 
 Решение.
+
+![image](https://user-images.githubusercontent.com/99073996/201221141-b1ca5f2d-b585-4a76-949d-ad50acf0b34a.png)
+
 
 13.e)
 
 Запрос.
 ```sql
-
+select * from work_plase
+where not exists(select plase_id from work_rez
+                 where 1>(select sum(operation_num) from work_rez
+				          where operation_id in (select id from operation_type
+						                         where operation_name like ('УЗИ'))));
 ```
 
 Решение.
+
+![image](https://user-images.githubusercontent.com/99073996/201222020-1835ce8e-c810-4f14-908b-fe6f3ddc611a.png)
+
 
 13.f)
-
+В этом запросе не получилось сделать с exists, так как внутри этого оператора должен быть select, но обычный селект не будет учитывать несколько таблиц, а более сложный тут избыточен.
 Запрос.
 ```sql
-
+select DISTINCT work_plase.* from work_plase, medical_staff,work_rez
+where work_rez.worker_id=medical_staff.id
+and work_plase.id=work_rez.plase_id
+and work_plase.address!=medical_staff.address
 ```
 
 Решение.
+
+![image](https://user-images.githubusercontent.com/99073996/201223085-52d4bb50-ecca-44e0-b1f4-31287548b587.png)
+
+
