@@ -465,9 +465,10 @@ AND medical_staff.id=work_rez.worker_id;
 #### Запрос 12.
 ```sql
 SELECT address FROM medical_staff
-	UNION SELECT address FROM work_plase;
+	UNION SELECT plase FROM operation_type;
 ```
 
 Результат.
 
-![image](https://user-images.githubusercontent.com/99073996/201096682-a0c5578b-0c41-48d9-9445-ba10e0543663.png)
+![image](https://user-images.githubusercontent.com/99073996/201097184-df05a77a-d6f1-4f46-9150-68a2c7973cc6.png)
+
