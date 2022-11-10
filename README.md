@@ -244,15 +244,15 @@ ORDER BY work_rez.payment
 7.с)
 Запрос.
 ```sql
-select medical_staff.surname,medical_staff.address from medical_staff,work_rez,operation_type
-where medical_staff.id=work_rez.worker_id 
-and work_rez.operation_id= operation_type.id 
-and operation_type.operation_name='Наложение гипса'
-and work_rez.operation_num>1
+select medical_staff.surname,medical_staff.address from medical_staff
+where medical_staff.id IN (select worker_id From work_rez
+                           where operation_id IN (select id from operation_type
+                                                  where operation_name='Наложение гипса')
+                           AND operation_num>1)
 ```
 Результат.
 
-<img width="423" alt="image" src="https://user-images.githubusercontent.com/99073996/200639081-72b6d00b-99f4-4ed8-a44a-267fcaf5fdae.png">
+![image](https://user-images.githubusercontent.com/99073996/201083432-ca497fc4-5e6e-4a27-9dd5-785f231dcadf.png)
 
 7.d)
 Запрос.
@@ -355,3 +355,48 @@ WHERE operation_type.id=7;
 Результат.
 
 ![image](https://user-images.githubusercontent.com/99073996/201079232-cf8c8d35-5577-421c-bc69-2ef26c4fba69.png)
+
+
+### Часть 2.
+#### Задание 10.
+
+10.с)
+Запрос.
+```sql
+
+```
+Результат.
+
+
+
+10.d)
+Запрос.
+```sql
+select operation_type.operation_name from work_rez,operation_type
+where operation_type.id=work_rez.operation_id 
+AND work_rez.operation_id NOT IN (SELECT operation_id from work_rez
+                                 WHERE DATE IN ('Понедельник'))
+```
+Результат.
+
+![image](https://user-images.githubusercontent.com/99073996/201082021-e88ab4e6-13cd-43c9-bfe0-137d5080f720.png)
+
+10.e.c)
+Запрос.
+```sql
+select medical_staff.surname,medical_staff.address from medical_staff
+where medical_staff.id IN (select worker_id From work_rez
+                           where operation_id IN (select id from operation_type
+                                                  where operation_name='Наложение гипса')
+                           AND operation_num>1)
+```
+Результат.
+
+![image](https://user-images.githubusercontent.com/99073996/201083616-b6bc6bcb-de3f-4d29-a9f4-98956b4e47c3.png)
+
+10.e.d)
+Запрос.
+```sql
+
+```
+Результат.
