@@ -413,3 +413,52 @@ where  operation_type.id in (SELECT operation_id from work_rez
 
 ![image](https://user-images.githubusercontent.com/99073996/201087544-83add7fd-6c7f-47e4-b2f8-f1604346dd14.png)
 
+
+#### Задание 11.
+До этого я прогал на MySQL, но теперь перешлось перейти на другой редактор, так как ALL ANY там не работают((.
+
+11.c)
+```sql
+select * from work_plase
+where tax=ANY(SELECT min(tax) from work_plase
+              WHERE plase='Больница');
+```
+
+Результат.
+
+![image](https://user-images.githubusercontent.com/99073996/201091415-ec102b24-583f-4795-9bbb-1636a415df60.png)
+
+11.d)
+```sql
+select * from medical_staff
+where id = ANY (SELECT worker_id from work_rez
+              WHERE operation_id IN (SELECT id from operation_type
+			                         WHERE price IN (select min(price) from operation_type)));
+```
+
+Результат.
+
+![image](https://user-images.githubusercontent.com/99073996/201093415-21e40440-53dc-409d-b4f0-50a45d0dd007.png)
+
+11.e)
+```sql
+select max(price) from operation_type
+where id = ANY (Select operation_id from work_rez
+                WHERE date IN ('Четверг','Пятница'));
+```
+
+Результат.
+
+![image](https://user-images.githubusercontent.com/99073996/201094101-4adbe3cf-70cc-40a0-a75a-8bea7257b878.png)
+
+11.f)
+```sql
+select work_rez.date,work_rez.operation_id,medical_staff.surname from work_rez,medical_staff
+where medical_staff.id= ANY (SELECT worker_id from work_rez
+                             WHERE payment>7000 and operation_num>1)
+AND medical_staff.id=work_rez.worker_id;
+```
+
+Результат.
+![image](https://user-images.githubusercontent.com/99073996/201095899-7a067194-f599-4246-83f7-71cf637b85cd.png)
+
