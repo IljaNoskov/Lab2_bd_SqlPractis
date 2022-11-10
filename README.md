@@ -294,3 +294,16 @@ and work_rez.operation_num>1
 Результат.
 
 <img width="565" alt="image" src="https://user-images.githubusercontent.com/99073996/200644851-3e4f81a0-4b91-4833-927f-47998a217b39.png">
+
+
+####Задание 8.
+Сейчас поменяются скрины, так как я пересел с ноута на комп.
+
+Запрос.
+```sql
+UPDATE work_rez
+SET payment=payment*operation_num*(100-(SELECT medical_staff.tax from medical_staff,work_rez where medical_staff.id=work_rez.worker_id AND work_rez.payment=payment ))/100;
+```
+
+Результат.
+![image](https://user-images.githubusercontent.com/99073996/201056944-21c794fc-41b0-47c7-9eed-6e6fa5f6e11c.png)
