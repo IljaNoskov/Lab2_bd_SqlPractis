@@ -384,7 +384,7 @@ AND work_rez.operation_id NOT IN (SELECT operation_id from work_rez
 ```
 Результат.
 
-![image](https://user-images.githubusercontent.com/99073996/201082021-e88ab4e6-13cd-43c9-bfe0-137d5080f720.png)
+![image](https://user-images.githubusercontent.com/99073996/201084637-fbd397d0-97b9-4a86-97cd-3c3673afc984.png)
 
 10.e.c)
 Запрос.
@@ -402,6 +402,14 @@ where medical_staff.id IN (select worker_id From work_rez
 10.e.d)
 Запрос.
 ```sql
-
+select operation_name from operation_type
+where  operation_type.id in (SELECT operation_id from work_rez
+                             where worker_id IN (SELECT id FROM medical_staff
+                                                 WHERE address IN ('Вознесенское','Выкса'))
+                             AND plase_id IN (SELECT id from work_plase
+                                              where plase IN ('Больница')));
 ```
 Результат.
+
+![image](https://user-images.githubusercontent.com/99073996/201087544-83add7fd-6c7f-47e4-b2f8-f1604346dd14.png)
+
