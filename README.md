@@ -472,3 +472,40 @@ SELECT address FROM medical_staff
 
 ![image](https://user-images.githubusercontent.com/99073996/201097184-df05a77a-d6f1-4f46-9150-68a2c7973cc6.png)
 
+
+#### Задание 13.
+13.с)
+
+Запрос.
+```sql
+
+```
+
+Решение.
+
+13.d)
+
+Запрос.
+```sql
+
+```
+
+Решение.
+
+13.e)
+
+Запрос.
+```sql
+
+```
+
+Решение.
+
+13.f)
+
+Запрос.
+```sql
+
+```
+
+Решение.
