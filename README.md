@@ -639,7 +639,7 @@ HAVING sum(operation_type.price*work_rez.operation_num)>30000
 select date,sum(operation_num) from work_rez
 group by date
 ```
-![image](https://user-images.githubusercontent.com/99073996/201234648-527da10c-a346-47f9-b9e5-b4f9b8bc9c22.png)
-
 
 Решение.
+
+![image](https://user-images.githubusercontent.com/99073996/201234648-527da10c-a346-47f9-b9e5-b4f9b8bc9c22.png)
