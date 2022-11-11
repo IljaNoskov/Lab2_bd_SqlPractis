@@ -595,3 +595,51 @@ and operation_type.price<=15000;
 Решение.
 
 ![image](https://user-images.githubusercontent.com/99073996/201226992-65eede49-390f-494e-85cc-737b8034c180.png)
+
+
+#### Задание 15.
+15.с)
+Запрос.
+```sql
+select date,operation_id,sum(operation_num) from work_rez
+group by date,operation_id
+ORDER BY date
+```
+Решение.
+
+![image](https://user-images.githubusercontent.com/99073996/201232701-07e5bb4f-ce0b-479c-b673-5f586e712d0d.png)
+
+
+15.d)
+Запрос.
+```sql
+select worker_id,avg(payment) from work_rez
+group by worker_id
+```
+Решение.
+
+![image](https://user-images.githubusercontent.com/99073996/201233669-5a010440-53c1-49bc-9bd8-7059c0c979ca.png)
+
+
+15.e)
+Запрос.
+```sql
+select work_rez.plase_id,sum(operation_type.price*work_rez.operation_num) from work_rez,operation_type
+where operation_type.id=work_rez.operation_id
+group by work_rez.plase_id
+HAVING sum(operation_type.price*work_rez.operation_num)>30000
+```
+Решение.
+
+![image](https://user-images.githubusercontent.com/99073996/201234467-871eb056-0e48-44c1-a84b-41d148003bc5.png)
+
+15.f)
+Запрос.
+```sql
+select date,sum(operation_num) from work_rez
+group by date
+```
+![image](https://user-images.githubusercontent.com/99073996/201234648-527da10c-a346-47f9-b9e5-b4f9b8bc9c22.png)
+
+
+Решение.
